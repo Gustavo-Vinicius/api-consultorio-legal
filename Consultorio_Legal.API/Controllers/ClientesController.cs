@@ -1,5 +1,6 @@
 using Consultorio_Legal.CORE.Domain;
 using Consultorio_Legal.MANAGER.Interfaces;
+using Consultorio_Legal.MANAGER.Validator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Consultorio_Legal.API.Controllers
@@ -16,7 +17,8 @@ namespace Consultorio_Legal.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(){
+        public async Task<IActionResult> Get()
+        {
 
             return Ok(await _clienteManager.GetClientesAsync());
         }
@@ -31,14 +33,14 @@ namespace Consultorio_Legal.API.Controllers
         public async Task<IActionResult> Post([FromBody] Cliente cliente)
         {
             var clienteInserido = await _clienteManager.InsertClienteAsync(cliente);
-            return CreatedAtAction("Get", new {id = cliente.Id}, cliente);
+            return CreatedAtAction("Get", new { id = cliente.Id }, cliente);
         }
 
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] Cliente cliente)
         {
             var clienteAtualizado = await _clienteManager.UpdateClienteAsync(cliente);
-            if(clienteAtualizado == null)
+            if (clienteAtualizado == null)
             {
                 return NotFound();
             }
