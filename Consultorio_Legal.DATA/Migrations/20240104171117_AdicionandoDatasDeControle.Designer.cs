@@ -4,6 +4,7 @@ using Consultorio_Legal.DATA.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Consultorio_Legal.DATA.Migrations
 {
     [DbContext(typeof(ConsultorioLegalContext))]
-    partial class ConsultorioLegalContextModelSnapshot : ModelSnapshot
+    [Migration("20240104171117_AdicionandoDatasDeControle")]
+    partial class AdicionandoDatasDeControle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,4 +1,5 @@
 using Consultorio_Legal.CORE.Domain;
+using Consultorio_Legal.CORE.SHARED.ModelViews;
 using Consultorio_Legal.MANAGER.Interfaces;
 using Consultorio_Legal.MANAGER.Validator;
 using Microsoft.AspNetCore.Mvc;
@@ -30,16 +31,16 @@ namespace Consultorio_Legal.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Cliente cliente)
+        public async Task<IActionResult> Post([FromBody] NovoCliente novoCliente)
         {
-            var clienteInserido = await _clienteManager.InsertClienteAsync(cliente);
-            return CreatedAtAction("Get", new { id = cliente.Id }, cliente);
+            var clienteInserido = await _clienteManager.InsertClienteAsync(novoCliente);
+            return CreatedAtAction("Get", new { id = clienteInserido.Id }, clienteInserido);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] Cliente cliente)
+        public async Task<IActionResult> Put([FromBody] AlteraCliente alteraCliente)
         {
-            var clienteAtualizado = await _clienteManager.UpdateClienteAsync(cliente);
+            var clienteAtualizado = await _clienteManager.UpdateClienteAsync(alteraCliente);
             if (clienteAtualizado == null)
             {
                 return NotFound();

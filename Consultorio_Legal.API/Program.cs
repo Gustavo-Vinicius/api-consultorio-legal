@@ -1,7 +1,10 @@
+using Consultorio_Legal.API.Configuration;
+using Consultorio_Legal.CORE.SHARED.ModelViews;
 using Consultorio_Legal.DATA.Context;
 using Consultorio_Legal.DATA.Repository;
 using Consultorio_Legal.MANAGER.Implementation;
 using Consultorio_Legal.MANAGER.Interfaces;
+using Consultorio_Legal.MANAGER.Mappings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -11,26 +14,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.UseAutoMapperConfiguration();
+
 builder.Services.AddDbContext<ConsultorioLegalContext>(options => options.UseSqlServer("Server=localhost; Database=DB_Consultorio_Legal; Integrated Security=True; trustServerCertificate=true"));
 
-builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
-builder.Services.AddScoped<IClienteManager, ClienteManager>();
+builder.Services.UseDependencyInjectionConfiguration();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Consultório Legal", Version = "v1" });
-});
+
+builder.Services.AddSwaggerConfiguration();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwaggerConfiguration();
 
 app.UseHttpsRedirection();
 
