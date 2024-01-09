@@ -16,7 +16,7 @@ builder.Services.AddControllers();
 
 builder.Services.UseAutoMapperConfiguration();
 
-builder.Services.AddDbContext<ConsultorioLegalContext>(options => options.UseSqlServer("Server=localhost; Database=DB_Consultorio_Legal; Integrated Security=True; trustServerCertificate=true"));
+builder.Services.AddDataBaseConfiguration();
 
 builder.Services.UseDependencyInjectionConfiguration();
 
@@ -30,6 +30,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 app.UseSwaggerConfiguration();
+
+app.UseDataBaseConfiguration();
 
 app.UseHttpsRedirection();
 
