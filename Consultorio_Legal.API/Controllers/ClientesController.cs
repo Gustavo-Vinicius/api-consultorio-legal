@@ -31,6 +31,7 @@ namespace Consultorio_Legal.API.Controllers
         }
 
         [HttpPost]
+        //[ProducesResponseType(tyoeof(Cliente), StatusCode.Status201Created)]
         public async Task<IActionResult> Post([FromBody] NovoCliente novoCliente)
         {
             var clienteInserido = await _clienteManager.InsertClienteAsync(novoCliente);

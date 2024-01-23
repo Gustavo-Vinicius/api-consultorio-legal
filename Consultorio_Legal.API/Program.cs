@@ -7,6 +7,7 @@ using Consultorio_Legal.MANAGER.Interfaces;
 using Consultorio_Legal.MANAGER.Mappings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,25 @@ builder.Services.UseDependencyInjectionConfiguration();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerConfiguration();
+
+Log.Logger = new LoggerConfiguration()
+.Enrich.FromLogContext()
+.MinimumLevel.Debug()
+.CreateLogger();
+
+// try
+// {
+//     Log.Information("Iniciando o WebApi");
+// }
+// catch (Exception ex)
+// {
+//     Log.Fatal(ex, "Erro catastrofico");
+//     throw;
+// }
+// finally
+// {
+//     Log.CloseAndFlush();
+// }
 
 var app = builder.Build();
 
