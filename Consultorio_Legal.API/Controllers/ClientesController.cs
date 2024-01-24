@@ -1,7 +1,5 @@
-using Consultorio_Legal.CORE.Domain;
 using Consultorio_Legal.CORE.SHARED.ModelViews;
 using Consultorio_Legal.MANAGER.Interfaces;
-using Consultorio_Legal.MANAGER.Validator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Consultorio_Legal.API.Controllers

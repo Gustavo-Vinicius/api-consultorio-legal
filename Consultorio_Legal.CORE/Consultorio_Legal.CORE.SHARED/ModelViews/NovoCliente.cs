@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Consultorio_Legal.CORE.SHARED.ModelViews
 {
-    #nullable disable
+#nullable disable
     public class NovoCliente
     {
         public string Nome { get; set; }
