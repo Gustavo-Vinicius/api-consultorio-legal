@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Consultorio_Legal.CORE.Domain;
+using Consultorio_Legal.DATA.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace Consultorio_Legal.DATA.Context
@@ -15,5 +16,12 @@ namespace Consultorio_Legal.DATA.Context
             
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new ClienteConfiguration());
+           
+        }
     }
 }
