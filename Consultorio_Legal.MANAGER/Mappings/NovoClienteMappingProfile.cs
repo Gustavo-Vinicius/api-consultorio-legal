@@ -11,6 +11,9 @@ namespace Consultorio_Legal.MANAGER.Mappings
             CreateMap<NovoCliente, Cliente>()
             .ForMember(d => d.Criacao, o => o.MapFrom(x => DateTime.Now))
             .ForMember(d => d.DataNascimento, o => o.MapFrom(x => x.DataNascimento.Date));
+
+            CreateMap<NovoEndereco, Enderecos>();
+
         }
     }
 }

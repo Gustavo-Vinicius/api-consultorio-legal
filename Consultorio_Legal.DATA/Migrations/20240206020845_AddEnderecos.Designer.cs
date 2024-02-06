@@ -4,6 +4,7 @@ using Consultorio_Legal.DATA.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,46 +12,42 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Consultorio_Legal.DATA.Migrations
 {
     [DbContext(typeof(ConsultorioLegalContext))]
-    partial class ConsultorioLegalContextModelSnapshot : ModelSnapshot
+    [Migration("20240206020845_AddEnderecos")]
+    partial class AddEnderecos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.14")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Consultorio_Legal.CORE.Domain.Cliente", b =>
+            modelBuilder.Entity("CL.Core.Domain.Cliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("Criacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DataNascimento")
-                        .IsRequired()
-                        .HasColumnType("varchar");
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Documento")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("DocumentoIdentificador");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("Sexo")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(1)")
-                        .HasDefaultValue("M");
+                        .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("Telefone")
                         .HasColumnType("nvarchar(max)");
@@ -60,12 +57,10 @@ namespace Consultorio_Legal.DATA.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Nome", "Sexo");
-
-                    b.ToTable("Clientes", (string)null);
+                    b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("Consultorio_Legal.CORE.Domain.Enderecos", b =>
+            modelBuilder.Entity("CL.Core.Domain.Endereco", b =>
                 {
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
@@ -93,20 +88,13 @@ namespace Consultorio_Legal.DATA.Migrations
                     b.ToTable("Enderecos");
                 });
 
-            modelBuilder.Entity("Consultorio_Legal.CORE.Domain.Enderecos", b =>
+            modelBuilder.Entity("CL.Core.Domain.Endereco", b =>
                 {
-                    b.HasOne("Consultorio_Legal.CORE.Domain.Cliente", "Cliente")
+                    b.HasOne("CL.Core.Domain.Cliente", "Cliente")
                         .WithOne("Endereco")
-                        .HasForeignKey("Consultorio_Legal.CORE.Domain.Enderecos", "ClienteId")
+                        .HasForeignKey("CL.Core.Domain.Endereco", "ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Cliente");
-                });
-
-            modelBuilder.Entity("Consultorio_Legal.CORE.Domain.Cliente", b =>
-                {
-                    b.Navigation("Endereco");
                 });
 #pragma warning restore 612, 618
         }

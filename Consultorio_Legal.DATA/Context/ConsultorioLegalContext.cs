@@ -10,7 +10,10 @@ namespace Consultorio_Legal.DATA.Context
 {
     public class ConsultorioLegalContext : DbContext
     {
+
         public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Enderecos> Enderecos { get; set; }
+
         public ConsultorioLegalContext(DbContextOptions options) : base(options)
         {
             
@@ -21,6 +24,7 @@ namespace Consultorio_Legal.DATA.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new ClienteConfiguration());
+            modelBuilder.ApplyConfiguration(new EnderecoConfiguration());
            
         }
     }

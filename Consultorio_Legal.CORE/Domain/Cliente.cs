@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Consultorio_Legal.CORE.Domain
 {
-    #nullable disable
+#nullable disable
     public class Cliente
     {
         public int Id { get; set; }
@@ -16,5 +11,6 @@ namespace Consultorio_Legal.CORE.Domain
         public string Documento { get; set; }
         public DateTime Criacao { get; set; }
         public DateTime? UltimaAtualizacao { get; set; }
+        public Enderecos Endereco { get; set; }
     }
 }
