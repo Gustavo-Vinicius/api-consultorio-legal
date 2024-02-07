@@ -13,6 +13,7 @@ namespace Consultorio_Legal.MANAGER.Mappings
             .ForMember(d => d.DataNascimento, o => o.MapFrom(x => x.DataNascimento.Date));
 
             CreateMap<NovoEndereco, Enderecos>();
+            CreateMap<NovoTelefone, Telefone>();
 
         }
     }

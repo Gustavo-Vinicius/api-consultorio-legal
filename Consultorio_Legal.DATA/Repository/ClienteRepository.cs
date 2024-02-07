@@ -18,6 +18,8 @@ namespace Consultorio_Legal.DATA.Repository
         {
             return await _context.Clientes
             .Include(p => p.Endereco)
+            .Include(p => p.Telefones)
+            .AsNoTracking()
             .ToListAsync();
         }
 

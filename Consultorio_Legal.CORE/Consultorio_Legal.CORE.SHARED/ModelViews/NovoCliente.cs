@@ -9,5 +9,6 @@ namespace Consultorio_Legal.CORE.SHARED.ModelViews
         public string Telefone { get; set; }
         public string Documento { get; set; }
         public NovoEndereco Endereco { get; set; }
+        public ICollection<NovoTelefone> Telefones { get; set; }
     }
 }
