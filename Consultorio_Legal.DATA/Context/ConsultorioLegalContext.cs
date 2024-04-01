@@ -14,6 +14,8 @@ namespace Consultorio_Legal.DATA.Context
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Enderecos> Enderecos { get; set; }
         public DbSet<Telefone> Telefones { get; set; }
+        public DbSet<Medico> Medicos { get; set; }
+        public DbSet<Especialidade> Especialidades { get; set; }
 
         public ConsultorioLegalContext(DbContextOptions options) : base(options)
         {
